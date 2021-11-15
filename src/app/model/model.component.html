@@ -1,0 +1,145 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre"
+      formControlName="nombre"
+    />
+    <div
+      class="error"
+      *ngIf="
+        formulario.controls.nombre.errors?.required &&
+        formulario.controls.nombre.touched
+      "
+    >
+      El campo nombre es erroneo
+    </div>
+    <div
+      class="error"
+      *ngIf="
+        formulario.controls.nombre.errors?.minlength &&
+        formulario.controls.nombre.touched
+      "
+    >
+      El campo debe tener
+      {{ formulario.controls.nombre.errors?.minlength.requiredLength }}
+      caracteres
+    </div>
+    <!-- <div>
+      <h6>Valid:</h6>
+      <pre>{{ formulario.controls.nombre.errors | json }}</pre>
+    </div> -->
+  </div>
+  <div class="form-group">
+    <label for="apellidos">Apellidos</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Apellidos"
+      formControlName="apellidos"
+    />
+    <div
+      class="error"
+      *ngIf="
+        formulario.controls.apellidos.errors?.maxlength &&
+        formulario.controls.apellidos.touched
+      "
+    >
+      El campo apellidos es erroneo
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="edad">Edad</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Edad"
+      formControlName="edad"
+    />
+    <div
+      class="error"
+      *ngIf="
+        formulario.controls.edad.errors?.edadValidator &&
+        formulario.controls.edad.touched
+      "
+    >
+      El campo edad es erroneo
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="dni">DNI</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="DNI"
+      formControlName="dni"
+    />
+    <div
+      class="error"
+      *ngIf="formulario.controls.dni.errors && formulario.controls.dni.touched"
+    >
+      El campo email es erroneo
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+    />
+  </div>
+  <div class="form-group">
+    <label for="repeat_password">repeat passwords</label>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="repeat password"
+      formControlName="repeat_password"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <div
+      class="error"
+      *ngIf="
+        formulario.controls.email.errors && formulario.controls.email.touched
+      "
+    >
+      El campo email es erroneo
+    </div>
+  </div>
+  <input
+    type="submit"
+    value="Enviar"
+    class="btn col-12 btn-primary mt-4 float-end"
+    [disabled]="!formulario.valid"
+  />
+</form>
+<hr />
+<h4>Formulario</h4>
+<pre>{{ formulario.value | json }}</pre>
+<hr />
+<h4>Valido:</h4>
+<pre>{{ formulario.valid }}</pre>
+<hr />
+<h4>Invalido:</h4>
+<pre>{{ formulario.invalid }}</pre>
+<hr />
+<h4>Dirty:</h4>
+<pre>{{ formulario.dirty }}</pre>
+<hr />
+<h4>Untouched:</h4>
+<pre>{{ formulario.untouched }}</pre>
+<hr />
+<h4>Touched:</h4>
+<pre>{{ formulario.touched }}</pre>
